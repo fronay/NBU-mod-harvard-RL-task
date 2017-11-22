@@ -407,13 +407,14 @@ experiment.push(rocket_2_while_block);
 experiment.push(instructions_1e_block);
 experiment.push(space_practice_block);
 experiment.push(instructions_2_block);
-*/
 experiment.push(space_block);
 experiment.push(save_data_block);
+*/
 experiment.push(check_demographics_block);
 experiment.push(save_subinfo_block);
 experiment.push(debriefing_block);
 experiment.push(score_block);
+
 experiment.push(end_block);
 
 jsPsych.preloadImages(images, function(){ startExperiment(); });
