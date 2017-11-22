@@ -18,7 +18,7 @@ function mysql_insert($table, $inserts) {
     $values = array_map('mysql_real_escape_string', array_values($inserts));
     $keys = array_keys($inserts);
 
-    return mysql_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
+    return mysqli_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
 }
 
 // get the table name
@@ -46,7 +46,7 @@ for($i=0;$i<count($trials);$i++)
 
 // confirm the results
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error());
 } else {
     print "successful insert!";
     echo "successful insert!";
