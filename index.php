@@ -45,8 +45,9 @@ for (i = 0; i < 1000; i++) {
 }
 
 var nrpracticetrials = 25;
-var nrtrials = 125;
-var nrrockettrials = 5;
+// var nrtrials = 125;
+var nrtrials = 1;
+var nrrockettrials = 1;
 
 var p_alien_1_rews = [4, 5, 3, 1, -1];
 var p_alien_2_rews = [-5, -5, -2, 1, -1];
@@ -391,7 +392,7 @@ var experiment = [];
 
 experiment.push(change_colors);
 experiment.push(check_id_block);
-/* 
+/*
 experiment.push(consent_block);
 experiment.push(welcome_block);
 experiment.push(instructions_1a_block);
@@ -406,10 +407,10 @@ experiment.push(rocket_practice_block);
 experiment.push(rocket_2_while_block);
 experiment.push(instructions_1e_block);
 experiment.push(space_practice_block);
+*/
 experiment.push(instructions_2_block);
 experiment.push(space_block);
 experiment.push(save_data_block);
-*/
 experiment.push(check_demographics_block);
 experiment.push(save_subinfo_block);
 experiment.push(debriefing_block);

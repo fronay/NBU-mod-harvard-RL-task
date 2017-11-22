@@ -9,7 +9,11 @@
 //
 //  $dbc = mysql_connect('localhost', 'username', 'password');
 //  mysql_select_db('databasename', $dbc);
-//
+
+// mac: cd into /usr/local/mysql/bin
+//  ./mysql -u 'be5bf6ff9d1667' -p 'heroku_62647533dcc7434' -h 'us-cdbr-iron-east-05.cleardb.net' 
+//for connection
+// passsword is 1c70fb5d
 include('database_connect.php');
 
 // You should not need to edit below this line
@@ -18,7 +22,7 @@ function mysql_insert($table, $inserts) {
     $values = array_map('mysql_real_escape_string', array_values($inserts));
     $keys = array_keys($inserts);
 
-    return mysqli_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
+    return mysql_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
 }
 
 // get the table name
@@ -46,7 +50,7 @@ for($i=0;$i<count($trials);$i++)
 
 // confirm the results
 if (!$result) {
-    die('Invalid query: ' . mysqli_error());
+    die('Invalid query: ' . mysql_error());
 } else {
     print "successful insert!";
     echo "successful insert!";
