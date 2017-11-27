@@ -124,6 +124,7 @@ for (i = 0; i < data.length; i++) {
 			json: JSON.stringify(data),
 		},
 		success: function(){
+			data.forEach(function (elem) {console.log(elem)});
 		}// write the result to javascript console
 		//success: function(output) { console.log(output); } // write the result to javascript console
 	});

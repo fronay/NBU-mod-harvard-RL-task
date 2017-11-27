@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Harvard University HIT</title>
+	<title>NBU modded Harvard HIT</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="jspsych/jspsych.js"></script>
 	<script src="jspsych/plugins/jspsych-text.js"></script>
@@ -46,8 +46,8 @@ for (i = 0; i < 1000; i++) {
 
 var nrpracticetrials = 25;
 // var nrtrials = 125;
-var nrtrials = 1;
-var nrrockettrials = 1;
+var nrtrials = 3;
+var nrrockettrials = 3;
 
 var p_alien_1_rews = [4, 5, 3, 1, -1];
 var p_alien_2_rews = [-5, -5, -2, 1, -1];
@@ -85,14 +85,18 @@ var check_id_block = {
 	chunk_type: 'while', 
 	timeline: [id_block], 
 	continue_function: function(data){ 
+		chunk_type: 'while', 
 		answers = data[0].responses.split(":"); 
 		id = answers[1].split('"')[1];
+		console.log("GOTCHA BRO, this is ID: " + id);
 		if (id){ 
 			subid = id;
 			id_trial = new Array(1);
 			id_trial[0] = {
+				// subid: subid
 				subid: subid
 			}
+			console.log("IN THE ID LOOP, HERES SUBID: " + subid);
 			save_data(id_trial,"space_novel_subid")
 			return false; 
 		} else {

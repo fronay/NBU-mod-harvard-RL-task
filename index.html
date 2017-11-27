@@ -84,14 +84,17 @@ var check_id_block = {
 	chunk_type: 'while', 
 	timeline: [id_block], 
 	continue_function: function(data){ 
+		console.log("YO FUCKER IM HERE")
 		answers = data[0].responses.split(":"); 
 		id = answers[1].split('"')[1];
+		console.log("GOTCHA BRO, this is ID: " + id);
 		if (id){ 
 			subid = id;
 			id_trial = new Array(1);
 			id_trial[0] = {
 				subid: subid
 			}
+			console.log("IN THE ID LOOP, HERES SUBID: " + subid);
 			// USAGE: save_data(data, table_name)
 			// so in this case idtrial is a array with just the subid in it!
 			save_data(id_trial,"space_novel_subid")
