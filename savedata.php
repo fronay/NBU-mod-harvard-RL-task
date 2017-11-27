@@ -1,7 +1,7 @@
 <?php
 
 // Submit Data to mySQL database
-// Josh de Leeuw
+// original: josh de lieuw; modded sniperdrone
 
 // Edit this line to include your database connection script
 //
@@ -22,8 +22,9 @@
 //-----------------------------
 
 // ---- LOCAL -----:
-// $db_conn = mysqli_connect('localhost:3306', 'root', 'MasterPassLab16', 'rocket_db');
+// $db_conn = mysqli_connect('localhost:3306', 'root', 'REDACTED_PASSWORD', 'rocket_db');
 // ---- HEROKU ----: 
+// replace temp password with actual db password
 $db_conn = mysqli_connect('us-cdbr-iron-east-05.cleardb.net', 'be5bf6ff9d1667', '0892cd8c9cf8d55', 'heroku_62647533dcc7434');
 
 //-----------------------------
@@ -36,14 +37,9 @@ function escape($unsafe_string) {
 }
 
 function mysqli_insert($table, $inserts, $dbc) {
-    /*$gay_values = implode(",",array_values($inserts));
-    $gay_keys = implode(",",array_keys($inserts));
-    error_log(print_r("values: $gay_values", true));
-    error_log(print_r("keys: $gay_keys", true));
-    */
-
     // $values = array_map('mysql_real_escape_string', array_values($inserts));
     // $values = array_walk(array_values($inserts), 'escape');
+    // TODO: fix escaping issue
     $values = array_values($inserts);
     $keys = array_keys($inserts);
     $sqlString = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\');';
@@ -61,8 +57,6 @@ $tab = $_POST['table'];
 
 // decode the data object from json
 $trials = json_decode($_POST['json']);
-//error_log(print_r("trials array first row(json_decode):::",true));
-//error_log(print_r($trials,true));
 
 //-- get the optional data (decode as array)
 //$opt_data = json_decode($_POST['opt_data'], true);
@@ -81,31 +75,6 @@ mysqli_query($db_conn, $createSubInfo);
 
 //----------------------------
 // Iterate through data arrays and submit mysql query
-//------------------------------
-
-// for each row of trials:
-
-/*
-for($i=0;$i<count($trials);$i++) {
-
-    // inelegant elementwise assignment for test:
-    
-    foreach($trials[$i] as $key => $value) {
-        $to_insert[$key] = $value;
-    }
-    
-    $ass = array_values($to_insert);
-    error_log(print_r("insert is : $ass", true));
-    // $to_insert = (array)($trials[$i]);
-    $result = mysqli_insert($tab, $to_insert, $db_conn);
-    
-}
-*/
-//      make an insert using names in json decoding
-
-
-//----------------------------
-// Old Version
 //------------------------------
 
 // for each element in the trials array, insert the row into the mysql table

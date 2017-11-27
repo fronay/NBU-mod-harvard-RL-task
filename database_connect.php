@@ -6,7 +6,6 @@ $db_conn = mysqli_connect('localhost:3306', 'root', 'MasterPassLab16', 'rocket_d
 //mysqli_select_db(, $dbc);
 
 // TEST
-$test = "CREATE TABLE beidlAss (name VARCHAR(20), owner VARCHAR(20), species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);";
 mysqli_query($db_conn, $test);
 
 //changed mysql version:
