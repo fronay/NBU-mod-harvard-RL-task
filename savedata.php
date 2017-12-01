@@ -1,7 +1,7 @@
 <?php
 
 // Submit Data to mySQL database
-// original: josh de lieuw; modded sniperdrone
+// original: josh de lieuw; modded NBU
 
 // Edit this line to include your database connection script
 //
@@ -13,7 +13,7 @@
 // mac: cd into /usr/local/mysql/bin
 // sudo mysql -u USERNAME -p NAME_OF_DB -h NAME_OF_HOST
 // type SUDO password, then SQL password
-// passsword is 0892cd8c9cf8d55 for heroku version right now
+// passsword is ******** for heroku version right now
 
 // ********** MYSQLI VERSION **********//
 
@@ -22,10 +22,10 @@
 //-----------------------------
 
 // ---- LOCAL -----:
-// $db_conn = mysqli_connect('localhost:3306', 'root', 'REDACTED_PASSWORD', 'rocket_db');
+// $db_conn = mysqli_connect('localhost:3306', 'root', '***********', 'rocket_db');
 // ---- HEROKU ----: 
 // replace temp password with actual db password
-$db_conn = mysqli_connect('us-cdbr-iron-east-05.cleardb.net', 'be5bf6ff9d1667', '0892cd8c9cf8d55', 'heroku_62647533dcc7434');
+$db_conn = mysqli_connect('us-cdbr-iron-east-05.cleardb.net', 'be5bf6ff9d1667', '************', 'heroku_62647533dcc7434');
 
 //-----------------------------
 //mysqli insert function

@@ -2,7 +2,7 @@
 
 
 // local version: 
-$db_conn = mysqli_connect('localhost:3306', 'root', 'MasterPassLab16', 'rocket_db');
+$db_conn = mysqli_connect('localhost:3306', 'root', '******', 'rocket_db');
 //mysqli_select_db(, $dbc);
 
 // TEST
