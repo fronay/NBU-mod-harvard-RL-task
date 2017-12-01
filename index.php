@@ -22,6 +22,7 @@
 </body>
 <script>
 
+
 // set up variables as
 var max = 5;
 var min = -4;
@@ -97,7 +98,7 @@ var check_id_block = {
 				subid: subid
 			}
 			console.log("IN THE ID LOOP, HERES SUBID: " + subid);
-			save_data(id_trial,"space_novel_subid")
+			// save_data(id_trial,"space_novel_subid");
 			return false; 
 		} else {
 			alert("Please provide your Amazon Mechanical Turk Worker ID."); 
@@ -295,6 +296,7 @@ var space_block = {
 		alldata = jsPsych.data.getTrialsOfType('space-novel-stim');
 		if (alldata.length==nrpracticetrials) {
 			return rews
+			console.log("in first if block" + rews + " \n rews details: " + rews[0] + " length " + rews.length);
 		} else {
 			//drifting probabilities
 			for (j = 0; j < 2; j++) {
@@ -302,7 +304,10 @@ var space_block = {
 				rews[j] = rews[j]+g;
 				rews[j] = Math.min(rews[j],Math.max(max*2 - rews[j], min));
 				rews[j] = Math.max(rews[j], Math.min(min*2 - rews[j], max));
+
+
 			}
+			console.log("in else block" + rews + " \n rews details: " + rews[0] + " length " + rews.length);
 			return rews
 		}
 	},
@@ -317,7 +322,7 @@ var space_block = {
 var save_data_block = {
 	type: 'call-function',
 	func: function(){
-		save_data(jsPsych.data.getTrialsOfType("space-novel-stim"),"space_novel_data");
+		// save_data(jsPsych.data.getTrialsOfType("space-novel-stim"),"space_novel_data");
 	}
 }
 
@@ -363,7 +368,7 @@ var save_subinfo_block = {
 			score: score,
 			time_elapsed: lasttrialdata.time_elapsed,
 		};
-		save_data(subinfo,"space_novel_subinfo");
+		// save_data(subinfo,"space_novel_subinfo");
 	}
 }
 
@@ -384,6 +389,9 @@ var score_block = {
 		}
 		return text
 	},
+	on_finish: function(data){
+         jsPsych.data.localSave("Rocket_Task_Local_Save" + subid +".csv", 'csv');
+   }
 };
 
 var end_block = {
@@ -411,13 +419,14 @@ experiment.push(rocket_practice_block);
 experiment.push(rocket_2_while_block);
 experiment.push(instructions_1e_block);
 experiment.push(space_practice_block);
-*/
+
 experiment.push(instructions_2_block);
+*/
 experiment.push(space_block);
-experiment.push(save_data_block);
+//experiment.push(save_data_block);
 experiment.push(check_demographics_block);
-experiment.push(save_subinfo_block);
-experiment.push(debriefing_block);
+//experiment.push(save_subinfo_block);
+//experiment.push(debriefing_block);
 experiment.push(score_block);
 
 experiment.push(end_block);
@@ -427,8 +436,8 @@ jsPsych.preloadImages(images, function(){ startExperiment(); });
 /* start the experiment */
 function startExperiment(){
 	jsPsych.init({
-		experiment_structure: experiment,
-	});
+		experiment_structure: experiment
+});
 }
 </script>
 </html>

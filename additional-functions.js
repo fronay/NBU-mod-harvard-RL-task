@@ -105,6 +105,7 @@ var images = ['img/earth_planet.png',
 'img/example_planets.png',
 ];
 
+
 function save_data(data,table_name){
 	
 for (i = 0; i < data.length; i++) {
@@ -112,7 +113,7 @@ for (i = 0; i < data.length; i++) {
 	delete data[i].trial_index_global;
 	delete data[i].trial_type;
 	}
-		
+	JSON.stringify
 	$.ajax({
 		type:'post',
 		cache: false,
@@ -129,4 +130,5 @@ for (i = 0; i < data.length; i++) {
 		//success: function(output) { console.log(output); } // write the result to javascript console
 	});
 }
+
 

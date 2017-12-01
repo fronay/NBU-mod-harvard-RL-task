@@ -22,16 +22,21 @@
 			params = jsPsych.pluginAPI.enforceArray(params, ['stimuli', 'choices']);
 			
 			var trials = new Array(params.nrtrials);
-			
+			// DECLARE GLOBAL VAR SO EVERYONE CAN JOIN IN FUN:
+			// Global rewards should be equal in length to trial number
+			GLOBALSPACESHIPS = [ /*round 1 ships */ [1,4], /*round 2 ships etc etc  */[4,1],[2, 2] ];
+			GLOBALREWARDS =  [ /* round 1 reward*/ [-5,0], /*etc*/ [0,-5],[3, 3] ];
+
 			for (var i = 0; i < trials.length; i++) {
 				
 				trials[i] = {};
 				trials[i].practice = params.practice || 0;
-				trials[i].rews = params.rews;
+				// trials[i].rews = params.rews;
+				// trials[i].rews = params.GLOBALREWARDS[i];
+				trials[i].rews = GLOBALREWARDS[i]
+				trials[i].ROUNDINDEX = i;
 				trials[i].subid = params.subid;
-				
 				//trials[i].fixed_time = params.fixed_time || false;
-				
 				// timing parameters
 				trials[i].feedback_time = params.feedback_time || 500;
 				trials[i].ITI = params.ITI || 1000;
@@ -39,7 +44,7 @@
 				trials[i].timing_response = params.timing_response || 2000; // if -1, then wait for response forever
 				trials[i].score_time = params.score_time || 1500;
 				trials[i].level2_time = params.level2_time || 1000;
-				trials[i].totalscore_time = params.totalscore_time || 2000;
+				trials[i].totalscore_time = params.totalscore_time || 0; // changed to 0 for quicker testing
 				
 			}
 			return trials;
@@ -63,8 +68,10 @@
 			var stimsperstate = [1,2];
 			stimsperstate = [stimsperstate, [3, 4]];
 			var state1 = Math.ceil(Math.random()*2);
-			var stims = shuffle(stimsperstate[state1-1]);			
-
+			//var stims = shuffle(stimsperstate[state1-1]);	
+			// set via global this time
+			var stims = GLOBALSPACESHIPS[trial.ROUNDINDEX];
+			// console.log("LISTEN UP, this is what stims are: " + stims +"  and stimsperstate:   " + stimsperstate);		
 			var part = -1;
 			var choice1 = -1;
 			var state2 = -1;
@@ -299,7 +306,7 @@
 				
 				if (stage==4) { // 
 					display_element.html('');
-										
+					/*				
 					if (points > 0) {
 						picture = 'img/treasure_'+points+'.png';
 					}
@@ -320,6 +327,7 @@
 					
 					$('#jspsych-space-novel-top-rewards').append($('<div style="clear:both; height:20px"></div>'))
 					$('#jspsych-space-novel-top-rewards').append($('<div id="jspsych-space-novel-top-rewards-text">total score: '+score+'</div>'))
+					*/
 				}
 				
 			}
@@ -353,7 +361,7 @@
 				// kill keyboard listeners
 				if(typeof keyboardListener !== 'undefined'){
 					//jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
- +					jsPsych.pluginAPI.cancelAllKeyboardResponses();
+					jsPsych.pluginAPI.cancelAllKeyboardResponses();
 				}
 			}
 			
